@@ -1,0 +1,114 @@
+<div>
+
+  <div id="decoration">
+    <h1 style="text-align:center">
+      <span style="color:black">&spades;</span>
+      <span style="color:red">&hearts;</span>
+      <span style="color:black"> &clubs;</span>
+      <span style="color:red"> &diams;</span>
+      <span style="color:yellow"> Casino Royale </span>
+      <span style="color:black">&spades;</span>
+      <span style="color:red">&hearts;</span>
+      <span style="color:black"> &clubs;</span>
+      <span style="color:red"> &diams;</span>
+    </h1>
+  </div>
+
+  <div class="horizontal-line">
+  </div>
+
+  <div class="flex-container" id="cardRow">
+    <div class="horizontal-card" id="bankerThird">
+      <span class="suit"></span>
+      <span class="image"></span>
+    </div>
+    <div class="vertical-card" id="bankerSecond">
+      <span class="suit"></span>
+      <span class="image"></span>
+    </div>
+    <div class="vertical-card" id="bankerFirst">
+      <span class="suit"></span>
+      <span class="image"></span>
+    </div>
+    <div class="verical-line">
+    </div>
+    <div class="vertical-card" id="playerSecond">
+      <span class="suit"></span>
+      <span class="image"></span>
+    </div>
+    <div class="vertical-card" id="playerFirst">
+      <span class="suit"></span>
+      <span class="image"></span>
+    </div>
+    <div class="horizontal-card" id="playerThird">
+      <span class="suit"></span>
+      <span class="image"></span>
+    </div>
+  </div>
+
+  <div class="flex-container">
+    <div>
+      <h1>
+        <span style="color:red">Banker</span>
+      </h1>
+    </div>
+    <div>
+      <h1>
+        <span style="color:lightblue">Player</span>
+      </h1>
+    </div>
+  </div>
+
+
+  <div class="horizontal-line">
+  </div>
+  <br/>
+
+  <div id="bonusBox" class="flex-container">
+    <form>
+      <span style="color:red">Dragon</span>
+      <input type="number" id="dragonBet" min="0" max="700" step="5" value="0">
+      <span style="color:yellow">Tie</span>
+      <input type="number" id="tieBet" min="0" max="700" step="5" value="0">
+      <span style="color:lightblue">Panda</span>
+      <input type="number" id="pandaBet" min="0" max="700" step="5" value="0">
+    </form>
+  </div>
+
+  <div class="horizontal-line">
+  </div>
+  <br/>
+
+  <div id="betBox" class="flex-container">
+    <div>
+      <h1>
+        <span style="color:red">Banker</span>
+        <input type="number" id="bankerBet" min="0" max="14000" step="25" value="0">
+      </h1>
+    </div>
+    <div class="verical-line2">
+    </div>
+    <div>
+      <h1>
+        <span style="color:lightblue">Player</span>
+        <input type="number" id="playerBet" min="0" max="14000" step="25" value="0">
+      </h1>
+    </div>
+  </div>
+
+  <div class="horizontal-line">
+  </div>
+  <br/>
+
+  <div id="theControls">
+    <button id="aboutTheGame" onClick="explainTheGame()">About the Game (open the console)</button>
+    <button id="shuffleButton" onClick="createShoe()">
+      Shuffle the deck
+    </button>
+    <button id="dealButton" onClick="dealAHand(theShoe, theDiscard)">
+      Deal a Hand
+    </button>
+    <span style="color:yellow">My Total: </span><span style="color:yellow" id="myChipTotal"></span>
+  </div>
+
+</div>
