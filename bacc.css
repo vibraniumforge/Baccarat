@@ -14,7 +14,7 @@
 .verical-line {
   border-left: 5px solid yellow;
   height: 100px;
-  margin: 1px;
+  margin: 5px;
   position: relative;
   overflow: hidden;
   display: inline-block;
