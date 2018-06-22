@@ -91,7 +91,7 @@ body {
   background-color: green;
   margin: 0px;
   height: 50px;
-  text-align:center;
+  text-align: center;
 }
 
 #dragon {
@@ -118,6 +118,14 @@ body {
   background-color: green;
   width: 60px;
   color: yellow;
+  border: none;
+}
+
+.suit {
+  border: none;
+}
+
+.image {
   border: none;
 }
 
