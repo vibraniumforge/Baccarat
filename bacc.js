@@ -28,6 +28,9 @@ function explainTheGame() {
     "A tutorial: https://www.caesars.com/casino-gaming-blog/latest-posts/table-games/baccarat/how-to-play-baccarat#.WysD-adKhPY"
   );
   console.log(
+    "Another link: http://www.bay101.com/Table-Games/How-to-Play-EZ-Baccarat"
+  );
+  console.log(
     "A link for the banker hit chart: http://photos1.blogger.com/blogger/4295/1891/1600/baccarat-table02.2.jpg"
   );
   console.log("Let's shuffle!");
@@ -474,11 +477,11 @@ function dealAHand(theShoe, theDiscard) {
   }
 
   function updateRunningChipTotal(playerTotal, bankerTotal) {
-    playerBet = parseInt(document.getElementById("playerBet").value);
-    bankerBet = parseInt(document.getElementById("bankerBet").value);
-    dragonBet = parseInt(document.getElementById("dragonBet").value);
-    tieBet = parseInt(document.getElementById("tieBet").value);
-    pandaBet = parseInt(document.getElementById("pandaBet").value);
+    playerBet = parseInt(document.getElementById("playerBet").value, 10);
+    bankerBet = parseInt(document.getElementById("bankerBet").value, 10);
+    dragonBet = parseInt(document.getElementById("dragonBet").value, 10);
+    tieBet = parseInt(document.getElementById("tieBet").value, 10);
+    pandaBet = parseInt(document.getElementById("pandaBet").value, 10);
     console.log("playerTotal=", playerTotal);
     console.log("bankerTotal=", bankerTotal);
     myRunningChipTotal =
