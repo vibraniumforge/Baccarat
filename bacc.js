@@ -109,7 +109,7 @@ function createShoe() {
     return theShoe;
   }
 
-  function shuffleTheCards(theShoe) {
+  function shuffleTheCards() {
     for (let i = 0; i < 1000; i++) {
       let location1 = Math.floor(Math.random() * theShoe.length);
       let location2 = Math.floor(Math.random() * theShoe.length);
@@ -119,7 +119,7 @@ function createShoe() {
     }
   }
 
-  function burnCards(theShoe, theDiscard) {
+  function burnCards() {
     let numBurnCards = theShoe[0].value === 0 ? 10 : theShoe[0].value;
     theDiscard.push(theShoe.shift());
     for (let i = 1; i <= numBurnCards; i++) {
@@ -133,7 +133,7 @@ function createShoe() {
 
 //-----------------------------------------------------------------------------------
 
-function dealAHand(theShoe, theDiscard) {
+function dealAHand() {
   let playerTotal = null;
   let bankerTotal = null;
   let playerWins = false;
@@ -183,7 +183,7 @@ function dealAHand(theShoe, theDiscard) {
     .classList.remove("Diamonds", "Hearts", "Spades", "Clubs");
   dealFirstFourCards(theShoe);
 
-  function dealFirstFourCards(theShoe) {
+  function dealFirstFourCards() {
     playerHand.push(theShoe.shift());
     playerTotalCards++;
     bankerHand.push(theShoe.shift());
@@ -192,7 +192,7 @@ function dealAHand(theShoe, theDiscard) {
     playerTotalCards++;
     bankerHand.push(theShoe.shift());
     bankerTotalCards++;
-    showFirstFourCards(playerHand, bankerHand);
+    showFirstFourCards();
   }
 
   function suitChanger(suit) {
@@ -207,7 +207,7 @@ function dealAHand(theShoe, theDiscard) {
     }
   }
 
-  function showFirstFourCards(playerHand, bankerHand) {
+  function showFirstFourCards() {
     if (playerHand[0]) {
       document.querySelector("#playerFirst .suit").innerHTML = suitChanger(
         playerHand[0].suit
@@ -246,23 +246,23 @@ function dealAHand(theShoe, theDiscard) {
   function totalTheHands(playerTotal, bankerTotal, playerHand, bankerHand) {
     playerTotal = (playerHand[0].value + playerHand[1].value) % 10;
     bankerTotal = (bankerHand[0].value + bankerHand[1].value) % 10;
-    compareHandsForNaturals(playerTotal, bankerTotal);
+    compareHandsForNaturals();
   }
 
-  function compareHandsForNaturals(playerTotal, bankerTotal) {
+  function compareHandsForNaturals() {
     if (
       playerTotal === 8 ||
       playerTotal === 9 ||
       bankerTotal === 8 ||
       bankerTotal === 9
     ) {
-      compareHandsFinal(playerTotal, bankerTotal, playerHand, bankerHand);
+      compareHandsFinal();
     } else {
-      drawThirdCards(playerTotal, bankerTotal);
+      drawThirdCards();
     }
   }
 
-  function drawThirdCards(playerTotal, bankerTotal) {
+  function drawThirdCards() {
     if (playerTotal <= 5) {
       playerHand.push(theShoe.shift());
       playerTotalCards++;
@@ -305,10 +305,10 @@ function dealAHand(theShoe, theDiscard) {
     bankerTotal = bankerHand[2]
       ? (bankerHand[0].value + bankerHand[1].value + bankerHand[2].value) % 10
       : (bankerHand[0].value + bankerHand[1].value) % 10;
-    showThirdCards(playerHand, bankerHand, playerTotal, bankerTotal);
+    showThirdCards();
   }
 
-  function showThirdCards(playerHand, bankerHand, playerTotal, bankerTotal) {
+  function showThirdCards() {
     if (playerHand[2]) {
       document.querySelector("#playerThird .suit").innerHTML = suitChanger(
         playerHand[2].suit
@@ -326,17 +326,10 @@ function dealAHand(theShoe, theDiscard) {
       document.querySelector("#bankerThird").classList.add(bankerHand[2].suit);
     }
 
-    compareHandsFinal(
-      playerTotal,
-      bankerTotal,
-      playerHand,
-      bankerHand,
-      playerBet,
-      bankerBet
-    );
+    compareHandsFinal();
   }
 
-  function compareHandsFinal(playerTotal, bankerTotal, playerHand, bankerHand) {
+  function compareHandsFinal() {
     if (playerTotal > bankerTotal) {
       playerWins = true;
     } else if (playerTotal < bankerTotal) {
@@ -345,30 +338,10 @@ function dealAHand(theShoe, theDiscard) {
       resultIsATie = true;
       console.log("It is a TIE. The bank and player both have", bankerTotal);
     }
-    bonusHands(
-      bankerTotal,
-      playerTotal,
-      playerTotalCards,
-      bankerTotalCards,
-      playerWins,
-      bankerWins,
-      resultIsATie,
-      playerHand,
-      bankerHand
-    );
+    bonusHands();
   }
 
-  function bonusHands(
-    bankerTotal,
-    playerTotal,
-    playerTotalCards,
-    bankerTotalCards,
-    playerWins,
-    bankerWins,
-    resultIsATie,
-    playerHand,
-    bankerHand
-  ) {
+  function bonusHands() {
     if (resultIsATie === true) {
       console.log("TIE PAYS 8 TO 1");
     } else if (
@@ -437,26 +410,10 @@ function dealAHand(theShoe, theDiscard) {
     } else {
       console.log("No bonuses ocurred this hand");
     }
-    countHandTotals(
-      playerWins,
-      bankerWins,
-      resultIsATie,
-      dragon7Hands,
-      panda8Hands,
-      playerTotal,
-      bankerTotal
-    );
+    countHandTotals();
   }
 
-  function countHandTotals(
-    playerWins,
-    bankerWins,
-    resultIsATie,
-    dragon7Hands,
-    panda8Hands,
-    playerTotal,
-    bankerTotal
-  ) {
+  function countHandTotals() {
     if (playerWins === true) {
       playerWinningHands++;
     } else if (bankerWins === true) {
@@ -473,10 +430,10 @@ function dealAHand(theShoe, theDiscard) {
     console.log("Dragons:", dragon7Hands);
     console.log("Ties:", tieHands);
     console.log("Pandas:", panda8Hands);
-    updateRunningChipTotal(playerTotal, bankerTotal);
+    updateRunningChipTotal();
   }
 
-  function updateRunningChipTotal(playerTotal, bankerTotal) {
+  function updateRunningChipTotal() {
     playerBet = parseInt(document.getElementById("playerBet").value, 10);
     bankerBet = parseInt(document.getElementById("bankerBet").value, 10);
     dragonBet = parseInt(document.getElementById("dragonBet").value, 10);
@@ -598,10 +555,10 @@ function dealAHand(theShoe, theDiscard) {
     document.querySelector("#myChipTotal").innerHTML = "";
     document.querySelector("#myChipTotal").innerHTML = myRunningChipTotal;
     console.log("Your chip total is:", myRunningChipTotal);
-    discardCards(playerHand, bankerHand, theDiscard);
+    discardCards();
   }
 
-  function discardCards(playerHand, bankerHand, theDiscard) {
+  function discardCards() {
     for (let i = 0; i < playerHand.length; i++) {
       theDiscard.push(playerHand[i]);
     }
@@ -629,10 +586,10 @@ function dealAHand(theShoe, theDiscard) {
       console.log("You have run out of money. Please restart the game.");
       stop();
     }
-    seeIfThereAreEnoughCards(theShoe);
+    seeIfThereAreEnoughCards();
   }
 
-  function seeIfThereAreEnoughCards(theShoe) {
+  function seeIfThereAreEnoughCards() {
     if (theShoe.length < 52) {
       console.log("The cut card is out. Please reshuffle.");
       stop();
