@@ -8,6 +8,9 @@ let panda8Hands = 0;
 let totalHands = 0;
 let myRunningChipTotal = 1000;
 
+document.getElementById("aboutTheGame").addEventListener("click", explainTheGame);
+document.getElementById("shuffleButton").addEventListener("click", createShoe);
+document.getElementById("dealButton").addEventListener("click", dealAHand);
 document.getElementById("dealButton").disabled = true;
 
 function explainTheGame() {
