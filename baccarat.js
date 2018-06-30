@@ -8,7 +8,9 @@ let panda8Hands = 0;
 let totalHands = 0;
 let myRunningChipTotal = 1000;
 
-document.getElementById("aboutTheGame").addEventListener("click", explainTheGame);
+document
+  .getElementById("aboutTheGame")
+  .addEventListener("click", explainTheGame);
 document.getElementById("shuffleButton").addEventListener("click", createShoe);
 document.getElementById("dealButton").addEventListener("click", dealAHand);
 document.getElementById("dealButton").disabled = true;
@@ -19,11 +21,15 @@ function explainTheGame() {
   console.log("The value of a hand is the sum of the cards.");
   console.log("10, J, Q, and K are worth 0 points.");
   console.log("A is 1 point, 2 is 2 points, 3 is 3 points, etc.");
-  console.log("The value of a hand is the LAST digit of the total of all the cards.");
+  console.log(
+    "The value of a hand is the LAST digit of the total of all the cards."
+  );
   console.log("For example 9+8 is not 17, but instead 7");
   console.log("Whichever side gets closest to 9, without going over wins!");
   console.log("You cannot bet on BOTH the player and the banker. Either or.");
-  console.log("There are three optional bonus bets: Dragon 7, Tie, and Panda 8");
+  console.log(
+    "There are three optional bonus bets: Dragon 7, Tie, and Panda 8"
+  );
   console.log("The Dragon is a bet that the bank wins with a three card 7.");
   console.log("The Tie is a bet that the player and banker tie.");
   console.log("The Panda is a bet that the Player wins with a three card 8.");
@@ -184,7 +190,7 @@ function dealAHand() {
   document
     .querySelector("#bankerThird")
     .classList.remove("Diamonds", "Hearts", "Spades", "Clubs");
-  dealFirstFourCards(theShoe);
+  dealFirstFourCards();
 
   function dealFirstFourCards() {
     playerHand.push(theShoe.shift());
@@ -243,10 +249,10 @@ function dealAHand() {
         bankerHand[1].image;
       document.querySelector("#bankerSecond").classList.add(bankerHand[1].suit);
     }
-    totalTheHands(playerTotal, bankerTotal, playerHand, bankerHand);
+    totalTheHands();
   }
 
-  function totalTheHands(playerTotal, bankerTotal, playerHand, bankerHand) {
+  function totalTheHands() {
     playerTotal = (playerHand[0].value + playerHand[1].value) % 10;
     bankerTotal = (bankerHand[0].value + bankerHand[1].value) % 10;
     compareHandsForNaturals();
@@ -385,6 +391,7 @@ function dealAHand() {
       console.log("PANDA 8 PAYS 25 TO 1!!!");
       panda8Hands++;
     } else if (
+      playerWins === true &&
       playerTotal === 7 &&
       playerTotalCards === 2 &&
       bankerTotal === 6 &&
@@ -392,6 +399,7 @@ function dealAHand() {
     ) {
       // console.log("Player BBQ's banker!");
     } else if (
+      bankerWins === true &&
       playerTotal === 6 &&
       playerTotalCards === 2 &&
       bankerTotal === 7 &&
