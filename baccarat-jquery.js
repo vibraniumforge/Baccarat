@@ -16,11 +16,15 @@ function explainTheGame() {
   console.log("The value of a hand is the sum of the cards.");
   console.log("10, J, Q, and K are worth 0 points.");
   console.log("A is 1 point, 2 is 2 points, 3 is 3 points, etc.");
-  console.log("The value of a hand is the LAST digit of the total of all the cards.");
+  console.log(
+    "The value of a hand is the LAST digit of the total of all the cards."
+  );
   console.log("For example 9+8 is not 17, but instead 7");
   console.log("Whichever side gets closest to 9, without going over wins!");
   console.log("You cannot bet on BOTH the player and the banker. Either or.");
-  console.log("There are three optional bonus bets: Dragon 7, Tie, and Panda 8");
+  console.log(
+    "There are three optional bonus bets: Dragon 7, Tie, and Panda 8"
+  );
   console.log("The Dragon is a bet that the bank wins with a three card 7.");
   console.log("The Tie is a bet that the player and banker tie.");
   console.log("The Panda is a bet that the Player wins with a three card 8.");
@@ -133,7 +137,7 @@ function createShoe() {
 
 //-----------------------------------------------------------------------------------
 
-function dealAHand(theShoe, theDiscard) {
+function dealAHand() {
   let playerTotal = null;
   let bankerTotal = null;
   let playerWins = false;
@@ -170,9 +174,9 @@ function dealAHand(theShoe, theDiscard) {
   $("#playerThird").removeClass("Diamonds Hearts Spades Clubs");
   $("#bankerThird").removeClass("Diamonds Hearts Spades Clubs");
 
-  dealFirstFourCards(theShoe);
+  dealFirstFourCards();
 
-  function dealFirstFourCards(theShoe) {
+  function dealFirstFourCards() {
     playerHand.push(theShoe.shift());
     playerTotalCards++;
     bankerHand.push(theShoe.shift());
@@ -196,7 +200,7 @@ function dealAHand(theShoe, theDiscard) {
     }
   }
 
-  function showFirstFourCards(playerHand, bankerHand) {
+  function showFirstFourCards() {
     if (playerHand[0]) {
       $("#playerFirst .suit").html(suitChanger(playerHand[0].suit));
       $("#playerFirst .image").html(playerHand[0].image);
@@ -217,29 +221,29 @@ function dealAHand(theShoe, theDiscard) {
       $("#bankerSecond .image").html(bankerHand[1].image);
       $("#bankerSecond").addClass(bankerHand[1].suit);
     }
-    totalTheHands(playerTotal, bankerTotal, playerHand, bankerHand);
+    totalTheHands();
   }
 
-  function totalTheHands(playerTotal, bankerTotal, playerHand, bankerHand) {
+  function totalTheHands() {
     playerTotal = (playerHand[0].value + playerHand[1].value) % 10;
     bankerTotal = (bankerHand[0].value + bankerHand[1].value) % 10;
-    compareHandsForNaturals(playerTotal, bankerTotal);
+    compareHandsForNaturals();
   }
 
-  function compareHandsForNaturals(playerTotal, bankerTotal) {
+  function compareHandsForNaturals() {
     if (
       playerTotal === 8 ||
       playerTotal === 9 ||
       bankerTotal === 8 ||
       bankerTotal === 9
     ) {
-      compareHandsFinal(playerTotal, bankerTotal, playerHand, bankerHand);
+      compareHandsFinal();
     } else {
-      drawThirdCards(playerTotal, bankerTotal);
+      drawThirdCards();
     }
   }
 
-  function drawThirdCards(playerTotal, bankerTotal) {
+  function drawThirdCards() {
     if (playerTotal <= 5) {
       playerHand.push(theShoe.shift());
       playerTotalCards++;
@@ -282,10 +286,10 @@ function dealAHand(theShoe, theDiscard) {
     bankerTotal = bankerHand[2]
       ? (bankerHand[0].value + bankerHand[1].value + bankerHand[2].value) % 10
       : (bankerHand[0].value + bankerHand[1].value) % 10;
-    showThirdCards(playerHand, bankerHand, playerTotal, bankerTotal);
+    showThirdCards(l);
   }
 
-  function showThirdCards(playerHand, bankerHand, playerTotal, bankerTotal) {
+  function showThirdCards() {
     if (playerHand[2]) {
       $("#playerThird .suit").html(suitChanger(playerHand[2].suit));
       $("#playerThird .image").html(playerHand[2].image);
@@ -296,18 +300,10 @@ function dealAHand(theShoe, theDiscard) {
       $("#bankerThird .image").html(bankerHand[2].image);
       $("#bankerThird").addClass(bankerHand[2].suit);
     }
-
-    compareHandsFinal(
-      playerTotal,
-      bankerTotal,
-      playerHand,
-      bankerHand,
-      playerBet,
-      bankerBet
-    );
+    compareHandsFinal();
   }
 
-  function compareHandsFinal(playerTotal, bankerTotal, playerHand, bankerHand) {
+  function compareHandsFinal() {
     if (playerTotal > bankerTotal) {
       playerWins = true;
     } else if (playerTotal < bankerTotal) {
@@ -316,30 +312,10 @@ function dealAHand(theShoe, theDiscard) {
       resultIsATie = true;
       console.log("It is a TIE. The bank and player both have", bankerTotal);
     }
-    bonusHands(
-      bankerTotal,
-      playerTotal,
-      playerTotalCards,
-      bankerTotalCards,
-      playerWins,
-      bankerWins,
-      resultIsATie,
-      playerHand,
-      bankerHand
-    );
+    bonusHands();
   }
 
-  function bonusHands(
-    bankerTotal,
-    playerTotal,
-    playerTotalCards,
-    bankerTotalCards,
-    playerWins,
-    bankerWins,
-    resultIsATie,
-    playerHand,
-    bankerHand
-  ) {
+  function bonusHands() {
     if (resultIsATie === true) {
       console.log("TIE PAYS 8 TO 1");
     } else if (
@@ -408,26 +384,10 @@ function dealAHand(theShoe, theDiscard) {
     } else {
       console.log("No bonuses ocurred this hand");
     }
-    countHandTotals(
-      playerWins,
-      bankerWins,
-      resultIsATie,
-      dragon7Hands,
-      panda8Hands,
-      playerTotal,
-      bankerTotal
-    );
+    countHandTotals();
   }
 
-  function countHandTotals(
-    playerWins,
-    bankerWins,
-    resultIsATie,
-    dragon7Hands,
-    panda8Hands,
-    playerTotal,
-    bankerTotal
-  ) {
+  function countHandTotals() {
     if (playerWins === true) {
       playerWinningHands++;
     } else if (bankerWins === true) {
@@ -444,10 +404,10 @@ function dealAHand(theShoe, theDiscard) {
     console.log("Dragons:", dragon7Hands);
     console.log("Ties:", tieHands);
     console.log("Pandas:", panda8Hands);
-    updateRunningChipTotal(playerTotal, bankerTotal);
+    updateRunningChipTotal();
   }
 
-  function updateRunningChipTotal(playerTotal, bankerTotal) {
+  function updateRunningChipTotal() {
     playerBet = parseInt($("#playerBet").val(), 10);
     bankerBet = parseInt($("#bankerBet").val(), 10);
     dragonBet = parseInt($("#dragonBet").val(), 10);
@@ -569,10 +529,10 @@ function dealAHand(theShoe, theDiscard) {
     $("#myChipTotal").html("");
     $("#myChipTotal").html(myRunningChipTotal);
     console.log("Your chip total is:", myRunningChipTotal);
-    discardCards(playerHand, bankerHand, theDiscard);
+    discardCards();
   }
 
-  function discardCards(playerHand, bankerHand, theDiscard) {
+  function discardCards() {
     for (let i = 0; i < playerHand.length; i++) {
       theDiscard.push(playerHand[i]);
     }
@@ -600,10 +560,10 @@ function dealAHand(theShoe, theDiscard) {
       console.log("You have run out of money. Please restart the game.");
       stop();
     }
-    seeIfThereAreEnoughCards(theShoe);
+    seeIfThereAreEnoughCards();
   }
 
-  function seeIfThereAreEnoughCards(theShoe) {
+  function seeIfThereAreEnoughCards() {
     if (theShoe.length < 52) {
       console.log("The cut card is out. Please reshuffle.");
       stop();
