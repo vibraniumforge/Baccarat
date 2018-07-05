@@ -1,4 +1,4 @@
-.theControls {
+.the-controls {
   background-color: green;
   text-align: center;
 }
@@ -65,6 +65,10 @@ body {
   flex-flow: row wrap;
   -webkit-flex-flow: row wrap;
   justify-content: space-around;
+}
+
+.casinoName {
+  text-align: center;
 }
 
 .Spades {
