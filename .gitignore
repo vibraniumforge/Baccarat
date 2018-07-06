@@ -5,6 +5,9 @@
 package.json
 package-lock.json
 baccarat-jquery.js
+baccarat.html
+baccarat.js
+baccarat.css
 
 # testing
 /coverage
