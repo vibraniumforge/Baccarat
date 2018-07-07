@@ -8,6 +8,23 @@ let panda8Hands = 0;
 let totalHands = 0;
 let myRunningChipTotal = 1000;
 
+let playerTotal = null;
+let bankerTotal = null;
+let playerWins = false;
+let bankerWins = false;
+let resultIsADragon = false;
+let resultIsATie = false;
+let resultIsAPanda = false;
+let playerTotalCards = 0;
+let bankerTotalCards = 0;
+let playerHand = [];
+let bankerHand = [];
+let playerBet = 0;
+let bankerBet = 0;
+let dragonBet = 0;
+let tieBet = 0;
+let pandaBet = 0;
+
 document
   .getElementById("aboutTheGame")
   .addEventListener("click", explainTheGame);
@@ -132,7 +149,7 @@ function createShoe() {
     for (let i = 0; i <= numBurnCards; i++) {
       theDiscard.push(theShoe.shift());
     }
-    document.getElementById("dealButton").disabled = true;
+    document.getElementById("dealButton").disabled = false;
     document.querySelector("#myChipTotal").innerHTML = myRunningChipTotal;
     console.log("The deck is shuffled. We are ready to play.");
   }
@@ -141,22 +158,6 @@ function createShoe() {
 //-----------------------------------------------------------------------------------
 
 function dealAHand() {
-  let playerTotal = null;
-  let bankerTotal = null;
-  let playerWins = false;
-  let bankerWins = false;
-  let resultIsADragon = false;
-  let resultIsATie = false;
-  let resultIsAPanda = false;
-  let playerTotalCards = 0;
-  let bankerTotalCards = 0;
-  let playerHand = [];
-  let bankerHand = [];
-  let playerBet = 0;
-  let bankerBet = 0;
-  let dragonBet = 0;
-  let tieBet = 0;
-  let pandaBet = 0;
   clearTheTable();
 }
 
@@ -584,6 +585,8 @@ function resetAll() {
   playerWins = false;
   bankerWins = false;
   resultIsATie = false;
+  resultIsADragon = false;
+  resultIsAPanda = false;
   playerTotalCards = 0;
   bankerTotalCards = 0;
   seeIfThereIsEnoughMoney();
