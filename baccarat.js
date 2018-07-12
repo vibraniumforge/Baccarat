@@ -31,6 +31,8 @@ document
 document.getElementById("shuffleButton").addEventListener("click", createShoe);
 document.getElementById("dealButton").addEventListener("click", dealAHand);
 
+document.getElementById("dealButton").disabled = true;
+
 function explainTheGame() {
   console.log("WELCOME TO BACCARAT EASILY!!!");
   console.log("To play baccarat, you must bet on a side, Player or Banker.");
