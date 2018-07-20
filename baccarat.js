@@ -1,5 +1,5 @@
-let theDiscard = [];
 let theShoe = [];
+let theDiscard = [];
 let playerWinningHands = 0;
 let bankerWinningHands = 0;
 let tieHands = 0;
@@ -75,10 +75,10 @@ function createShoe() {
 
   function card(name, suit, value, deck, image) {
     this.name = name;
-    this.suit = suit;
-    this.value = value > 10 ? 0 : value;
-    this.deck = deck;
     this.image = image;
+    this.suit = suit;
+    this.deck = deck;
+    this.value = value > 10 ? 0 : value;
   }
 
   function createTheShoe() {
@@ -206,6 +206,7 @@ function dealFirstFourCards() {
   playerTotalCards++;
   bankerHand.push(theShoe.shift());
   bankerTotalCards++;
+  console.log(playerHand, bankerHand)
   showFirstFourCards();
 }
 
@@ -339,7 +340,6 @@ function showThirdCards() {
       bankerHand[2].image;
     document.querySelector("#bankerThird").classList.add(bankerHand[2].suit);
   }
-
   compareHandsFinal();
 }
 
@@ -597,7 +597,7 @@ function resetAll() {
 function seeIfThereIsEnoughMoney() {
   if (myRunningChipTotal === 0) {
     console.log("You have run out of money. Please restart the game.");
-    stop();
+    stopTheGame();
   }
   seeIfThereAreEnoughCards();
 }
@@ -605,7 +605,7 @@ function seeIfThereIsEnoughMoney() {
 function seeIfThereAreEnoughCards() {
   if (theShoe.length < 52) {
     console.log("The cut card is out. Please reshuffle.");
-    stop();
+    stopTheGame();
   }
   console.log(
     "-------------------Hand",
@@ -614,7 +614,7 @@ function seeIfThereAreEnoughCards() {
   );
 }
 
-function stop() {
+function stopTheGame() {
   console.log("Game stopped. Shuffle the deck again to reset.");
   document.getElementById("dealButton").disabled = true;
   playerWinningHands = 0;
